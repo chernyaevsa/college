@@ -7,8 +7,14 @@
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.StudentsUserControl">
 	<DockPanel>
-		<StackPanel>
+		<StackPanel DockPanel.Dock="Top">
 			<Button Command="{Binding Update}" Content="Обновить"/>
 		</StackPanel>
+		<StackPanel DockPanel.Dock="Bottom">
+			<TextBlock Text="{Binding Message}"/>
+		</StackPanel>
+		<DataGrid>
+			
+		</DataGrid>
 	</DockPanel>
 </UserControl>

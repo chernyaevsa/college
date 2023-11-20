@@ -47,6 +47,7 @@ namespace Client.ViewModels
 				Message = "Пустой ответ от сервера";
 			}
 			Students = JsonSerializer.Deserialize<List<Student>>(content);
+			Message = "";
 		}
 
 		public void Delete() 
