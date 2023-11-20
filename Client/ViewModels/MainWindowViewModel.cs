@@ -1,9 +1,14 @@
-﻿namespace Client.ViewModels
+﻿using Client.Views;
+namespace Client.ViewModels
 {
 	public class MainWindowViewModel : ViewModelBase
 	{
-#pragma warning disable CA1822 // Mark members as static
-		public string Greeting => "Welcome to Avalonia!";
-#pragma warning restore CA1822 // Mark members as static
+		public MainWindowViewModel() 
+		{
+			_StudentsUserControl = new StudentsUserControl();
+			_StudentsUserControl.DataContext = new StudentsUserControlViewModel();
+		}
+
+		public StudentsUserControl _StudentsUserControl { get; set; }
 	}
 }

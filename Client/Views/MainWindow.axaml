@@ -17,7 +17,7 @@
 
 	<TabControl>
 		<TabItem Header="Студенты">
-			
+			<UserControl Content="{Binding _StudentsUserControl}"/>
 		</TabItem>
 		<TabItem Header="Уроки">
 			
