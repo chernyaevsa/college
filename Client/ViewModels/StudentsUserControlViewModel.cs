@@ -14,8 +14,8 @@ namespace Client.ViewModels
 	public class StudentsUserControlViewModel : ViewModelBase
 	{
 		private HttpClient client = new HttpClient();
-		private List<Student>? _students;
-		public List<Student>? Students 
+		private ObservableCollection<Student> _students;
+		public ObservableCollection<Student> Students 
 		{
 			get => _students;
 			set => this.RaiseAndSetIfChanged(ref _students, value);
@@ -40,13 +40,15 @@ namespace Client.ViewModels
 			if (!response.IsSuccessStatusCode)
 			{
 				Message = $"Ошибка сервера {response.StatusCode}";
+				return;
 			}
 			var content = await response.Content.ReadAsStringAsync();
 			if (content == null)
 			{
 				Message = "Пустой ответ от сервера";
+				return;
 			}
-			Students = JsonSerializer.Deserialize<List<Student>>(content);
+			Students = JsonSerializer.Deserialize<ObservableCollection<Student>>(content);
 			Message = "";
 		}
 

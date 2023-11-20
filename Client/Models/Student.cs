@@ -5,15 +5,15 @@ namespace Client.Models;
 
 public partial class Student
 {
-    public int Id { get; set; }
+    public int id { get; set; }
 
-    public string Surname { get; set; } = null!;
+    public string surname { get; set; } = null!;
 
-    public string Name { get; set; } = null!;
+    public string name { get; set; } = null!;
 
-    public string Patronymic { get; set; } = null!;
+    public string patronymic { get; set; } = null!;
 
-    public string DateOfBirth { get; set; } = null!;
+    public string dateOfBirth { get; set; } = null!;
 
-    public string Group { get; set; } = null!;
+    public string group { get; set; } = null!;
 }

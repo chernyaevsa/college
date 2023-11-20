@@ -13,7 +13,7 @@
 		<StackPanel DockPanel.Dock="Bottom">
 			<TextBlock Text="{Binding Message}"/>
 		</StackPanel>
-		<DataGrid>
+		<DataGrid ItemsSource="{Binding Students}" AutoGenerateColumns="True">
 			
 		</DataGrid>
 	</DockPanel>
