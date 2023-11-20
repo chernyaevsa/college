@@ -47,7 +47,9 @@ namespace API.Controllers
 			var student = db.Students.SingleOrDefault(s => s.Id == id);
 			if (student == null)
 				return NotFound();
-			return Ok(student);
+			db.Students.Remove(student);
+			db.SaveChanges();
+			return Ok();
 		}
 	}
 }

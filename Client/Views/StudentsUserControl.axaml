@@ -11,7 +11,7 @@
 			<Button Command="{Binding Update}" Content="Обновить"/>
 			<Button Command="{Binding Add}" Content="Добавить"/>
 			<Button Command="{Binding Delete}" Content="Удалить"/>
-			<Button Command="{Binding Save}" Content="Сохранить"/>
+			<Button Command="{Binding Edit}" Content="Изменить текущий"/>
 		</StackPanel>
 		<StackPanel DockPanel.Dock="Bottom" >
 			<TextBlock Text="{Binding Message}"/>

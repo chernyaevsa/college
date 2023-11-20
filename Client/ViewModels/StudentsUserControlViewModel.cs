@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -37,13 +38,13 @@ namespace Client.ViewModels
 
 		public StudentsUserControlViewModel() 
 		{
-			client.BaseAddress = new Uri("http://localhost:5068/students");
+			client.BaseAddress = new Uri("http://localhost:5068");
 			Update();
 		}
 
 		public async Task Update()
 		{
-			var response = await client.GetAsync("");
+			var response = await client.GetAsync("/students");
 			if (!response.IsSuccessStatusCode)
 			{
 				Message = $"Ошибка сервера {response.StatusCode}";
@@ -59,21 +60,41 @@ namespace Client.ViewModels
 			Message = "";
 		}
 
-		public void Delete() 
+		public async Task Delete() 
 		{
 			if (SelectedStudent == null) return;
+			var response = await client.DeleteAsync($"/students/{SelectedStudent.id}");
+			if (!response.IsSuccessStatusCode)
+			{
+				Message = "Ошибка удаления со стороны сервера";
+				return;
+			}
 			Students.Remove(SelectedStudent);
 			SelectedStudent = null;
+			Message = "";
 		}
 
-		public void Add() 
+		public async Task Add() 
 		{
 			var student = new Student();
+			var response = await client.PostAsJsonAsync($"/students", student);
+			if (!response.IsSuccessStatusCode)
+			{
+				Message = "Ошибка добавления со стороны сервера";
+				return;
+			}
+			var content = await response.Content.ReadFromJsonAsync<Student>();
+			if (content == null)
+			{
+				Message = "При добавлении сервер отправил пустой ответ";
+				return;
+			}
+			student = content;
 			Students.Add(student);
 			SelectedStudent = student;
 		}
 
-		public void Save() 
+		public void Edit() 
 		{ 
 		
 		}
