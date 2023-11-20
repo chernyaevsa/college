@@ -7,13 +7,16 @@
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.StudentsUserControl">
 	<DockPanel>
-		<StackPanel DockPanel.Dock="Top">
+		<StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
 			<Button Command="{Binding Update}" Content="Обновить"/>
+			<Button Command="{Binding Add}" Content="Добавить"/>
+			<Button Command="{Binding Delete}" Content="Удалить"/>
+			<Button Command="{Binding Save}" Content="Сохранить"/>
 		</StackPanel>
-		<StackPanel DockPanel.Dock="Bottom">
+		<StackPanel DockPanel.Dock="Bottom" >
 			<TextBlock Text="{Binding Message}"/>
 		</StackPanel>
-		<DataGrid ItemsSource="{Binding Students}" AutoGenerateColumns="True">
+		<DataGrid ItemsSource="{Binding Students}" AutoGenerateColumns="True" SelectedItem="{Binding SelectedStudent}">
 			
 		</DataGrid>
 	</DockPanel>

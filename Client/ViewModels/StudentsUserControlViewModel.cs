@@ -13,6 +13,13 @@ namespace Client.ViewModels
 {
 	public class StudentsUserControlViewModel : ViewModelBase
 	{
+		private Student _selectedStudent;
+		public Student SelectedStudent
+		{
+			get => _selectedStudent;
+			set => this.RaiseAndSetIfChanged(ref _selectedStudent, value);
+		}
+
 		private HttpClient client = new HttpClient();
 		private ObservableCollection<Student> _students;
 		public ObservableCollection<Student> Students 
@@ -53,16 +60,20 @@ namespace Client.ViewModels
 		}
 
 		public void Delete() 
-		{ 
-		
+		{
+			if (SelectedStudent == null) return;
+			Students.Remove(SelectedStudent);
+			SelectedStudent = null;
 		}
 
 		public void Add() 
-		{ 
-			
+		{
+			var student = new Student();
+			Students.Add(student);
+			SelectedStudent = student;
 		}
 
-		public void Edit() 
+		public void Save() 
 		{ 
 		
 		}
