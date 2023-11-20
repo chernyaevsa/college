@@ -94,9 +94,21 @@ namespace Client.ViewModels
 			SelectedStudent = student;
 		}
 
-		public void Edit() 
-		{ 
-		
+		public async Task Edit() 
+		{
+			var response = await client.PutAsJsonAsync($"/students", SelectedStudent);
+			if (!response.IsSuccessStatusCode)
+			{
+				Message = "Ошибка изменения со стороны сервера";
+				return;
+			}
+			var content = await response.Content.ReadFromJsonAsync<Student>();
+			if (content == null)
+			{
+				Message = "При изменении сервер отправил пустой ответ";
+				return;
+			}
+			SelectedStudent = content;
 		}
 	}
 }
